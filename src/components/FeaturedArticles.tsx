@@ -20,7 +20,7 @@ export default function FeaturedArticles({ articles }: { articles: Article[] }) 
 
             <div className="flex flex-col w-2/5 gap-5">
                 {articles.slice(1, 5).map((article) => (
-                    <Link to={article.url} target="blank">
+                    <Link to={article.url} target="blank" key={article.id}>
                         <div className="flex items-center gap-3">
                             <div className="w-3/5">
                                 <div className="font-bold text-md">{article.title}</div>
