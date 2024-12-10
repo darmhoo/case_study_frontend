@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export default function Register() {
 
-  const [loginError, setLoginError] = useState(null);
   const [email, setEmail] = useState('darmhoo@hotmail.com');
   const [first_name, setFirstName] = useState('Omodamola');
   const [last_name, setLastName] = useState('Oladeji');
@@ -18,7 +17,7 @@ export default function Register() {
   const handleRegister = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
-      const data = {email, password, password_confirmation, first_name, last_name};
+      const data = { email, password, password_confirmation, first_name, last_name };
 
       apiClient.post('/api/register', data, {
         headers: {
@@ -26,15 +25,16 @@ export default function Register() {
           'Content-Type': 'application/json',
         }
       }).then((response) => {
-        if(response.data.status === 'success'){
+        if (response.data.status === 'success') {
           navigate('/auth/login');
         }
       }).catch((error) => {
-        setLoginError(error.response.data || 'registration failed')
+        console.log(error)
+
       })
     }
     catch (error) {
-      setLoginError(error.response?.data?.message || 'registration failed!');
+      console.log(error)
     }
 
 
@@ -60,18 +60,18 @@ export default function Register() {
             <label className="absolute top-0 left-0 text-xl flex items-center h-[55px]">First Name</label>
           </div>
           <div className="relative mb-2">
-            <input type="text" className="border border-b-3 border-t-0 border-r-0 border-l-0 outline-none w-full text-xl h-[55px]" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}/>
+            <input type="text" className="border border-b-3 border-t-0 border-r-0 border-l-0 outline-none w-full text-xl h-[55px]" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)} />
             <label className="absolute top-0 left-0 text-xl flex items-center h-[55px]">Last Name</label>
           </div>
 
           <div className="relative mb-2">
-            <input type="password" className="border border-b-3 border-t-0 border-r-0 border-l-0 outline-none w-full text-xl h-[55px]" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}/>
+            <input type="password" className="border border-b-3 border-t-0 border-r-0 border-l-0 outline-none w-full text-xl h-[55px]" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} />
             <label className="absolute top-0 left-0 text-xl flex items-center h-[55px]">Password</label>
 
           </div>
 
           <div className="relative mb-2">
-            <input type="password" className="border border-b-3 border-t-0 border-r-0 border-l-0 outline-none w-full text-xl h-[55px]" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordConfirmation(e.target.value)}/>
+            <input type="password" className="border border-b-3 border-t-0 border-r-0 border-l-0 outline-none w-full text-xl h-[55px]" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordConfirmation(e.target.value)} />
             <label className="absolute top-0 left-0 text-xl flex items-center h-[55px]">Repeat Password</label>
 
           </div>

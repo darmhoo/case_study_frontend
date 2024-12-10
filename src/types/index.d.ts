@@ -13,3 +13,10 @@ declare type Article = {
   publishedAt: string;
   author: string;
 }
+
+declare type ISearch = {
+  keyword?: string;
+  source?: string;
+  category?: string;
+  date?: string;
+}
